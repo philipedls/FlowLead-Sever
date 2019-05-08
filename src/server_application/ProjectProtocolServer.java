@@ -1,7 +1,7 @@
 package server_application;
 
 
-public class ProjectProtocolServer {
+public abstract class ProjectProtocolServer {
 
     public static String processLine(String text){
         switch (text){
@@ -13,6 +13,13 @@ public class ProjectProtocolServer {
 
             case "exit":
                 return "exit";
+
+            case "subject":
+                return "subject";
+
+            case "body_email":
+                return "email";
+
         }
 
         return null;

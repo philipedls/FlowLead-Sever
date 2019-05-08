@@ -4,14 +4,19 @@ import java.util.List;
 
 public class ShootRunnable implements Runnable{
 
-    private List<Email> listEmails;
+    private List<String> listEmails;
     private Thread insideThread;
     private String type;
+    // A SENHA DO SEU EMAIL
     private final String password = "superzon561421";
+    private String assunto;
+    private String corpo_email;
 
-    public ShootRunnable(List<Email> listEmails, String type){
+    public ShootRunnable(List<String> listEmails, String type, String assunto, String corpo_email){
         this.listEmails = listEmails;
         this.type = type;
+        this.assunto = assunto;
+        this.corpo_email = corpo_email;
         insideThread = new Thread(this);
         insideThread.start();
     }
@@ -26,9 +31,9 @@ public class ShootRunnable implements Runnable{
             case "PAR":
                 for (int index=0; index < listEmails.size(); index++){
                     if (index == 0)
-                        MyJavaMail.sendMail(listEmails.get(index), password);
+                        MyJavaMail.sendMail(listEmails.get(index), password, assunto, corpo_email);
                     else if (index%2 == 0){
-                        MyJavaMail.sendMail(listEmails.get(index), password);
+                        MyJavaMail.sendMail(listEmails.get(index), password, assunto, corpo_email);
                     }
                 }
 
@@ -36,7 +41,7 @@ public class ShootRunnable implements Runnable{
             case "IMPAR":
                 for (int index=1; index < listEmails.size(); index++){
                     if (index%2 != 0){
-                        MyJavaMail.sendMail(listEmails.get(index), password);
+                        MyJavaMail.sendMail(listEmails.get(index), password, assunto, corpo_email);
                     }
                 }
         }

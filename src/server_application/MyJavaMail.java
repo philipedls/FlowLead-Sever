@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public abstract class MyJavaMail {
 
-    public static void sendMail(Email email, String password){
+    public static void sendMail(String email, String password, String sub, String body){
 
         final String userMail = "philipelunacc@gmail.com";
 
@@ -31,14 +31,12 @@ public abstract class MyJavaMail {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(userMail));
 
-            Address[] addresses = InternetAddress
-                    .parse(email.getAdress());
+            Address[] addresses = InternetAddress.parse(email);
             message.setRecipients(Message.RecipientType.TO, addresses);
-            message.setSubject("Teste Automaçao de Emails 9");
-            message.setText("Email eviado usando API JavaMail.");
+            message.setSubject(sub);
+            message.setText(body);
 
             Transport.send(message);
-
             System.out.println("Mensagem com o Titulo" + message.getSubject() + " foi enviada");
 
         }catch (MessagingException e){
