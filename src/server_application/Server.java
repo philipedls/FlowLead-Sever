@@ -11,7 +11,7 @@ public class Server {
     public static void main (String[] args){
 
         try {
-            ServerSocket serverSocket = new ServerSocket(8686);
+            ServerSocket serverSocket = new ServerSocket(7979);
             Executor executor = Executors.newCachedThreadPool();
             System.out.println("Server ONLINE: " + serverSocket.toString());
 
